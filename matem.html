@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Matem</title>
+	<style type="text/css">
+	body{
+		background: black;
+		color: white;
+	}
+	.eq {
+		margin-top: -59%;
+		font-size: 1.2em;
+		color: white;
+		padding: 30%;
+		margin-left: 30%;
+		text-align: center;
+		
+	}
+		.matrix{
+			margin-top: -10%;
+    padding-top: -5%;
+    color: red;
+    margin-left: 70%;
+			position: relative;
+			font-size: 1.4em;
+			  letter-spacing: 1.2em;
+		}
+		.inputs{
+			width: 40%;
+			margin-top: 2%;
+			height: 20px;
+			font-size: 1.2em;
+			border: none;
+			background: inherit;
+			border-bottom: 2px solid white;
+			color: white;
+		}
+		button{
+			border: none;
+			background: inherit;
+			border: 2px solid white;
+			color: white;
+			margin-top: 5%;
+			margin-left: 10%;
+			width: 15%;
+			font-size: 1.4em;
+			height: 35px;
+
+		}
+	</style>
+</head>
+<body>
+
+<input type="" name="" class='inputs' id='vertice1' placeholder="Введите кол-во вершин 1-го"></br>
+<input type="" name="" class='inputs' id='vertice2' placeholder="Введите кол-во вершин 2-го"></br>
+
+<input type="" name="" class='inputs' id='edge1' placeholder="Введите кол-во ребер 1-го"></br>
+<input type="" name="" class='inputs' id='edge2' placeholder="Введите кол-во ребер 2-го"></br>
+
+<input type="" name="" class='inputs' id='zam1' placeholder="Введите замкнутось 1-го"></br>
+<input type="" name="" class='inputs' id='zam2' placeholder="Введите замкнутось 2-го"></br>
+
+<input type="" name="" class='inputs' id='first' placeholder="Введите путь (134243 или werqdf)..."></br>
+<input type="" name="" class='inputs' id='second' placeholder="Введите путь (134243 или werqdf)..."></br>
+
+<button onclick="go()">Проверить</button>
+
+
+
+
+<script type="text/javascript">
+	function go(){
+		var span = document.getElementById('span');
+		var verf = document.getElementById('verf');
+		var zam1=document.getElementById('zam1').value;
+		var zam2=document.getElementById('zam2').value;
+		var g1, g2, v1, e1, v2, e2;//g - графы   v-вершины    e-ребра....
+		g1=document.getElementById('first').value;
+		g2=document.getElementById('second').value;
+		v1=document.getElementById('vertice1').value;
+		v2=document.getElementById('vertice2').value;
+		e1=document.getElementById('edge1').value;
+		e2=document.getElementById('edge2').value;
+		var arrFirst = g1.toString().split('').reverse();
+		var arrSecond = g2.toString().split('').reverse();
+			if(v1.length === 0 ||  e1.length === 0 || v2.length === 0|| e2.length === 0){
+				alert("Заполните все поля");
+			}
+			
+			else if(zam1.length === 0 && zam2.length === 0 ){
+				for(var i = arrFirst.length-1; i>=0; i--){
+					var div = document.createElement("div");
+					div.setAttribute('class','eq');
+					var content = document.createTextNode(arrFirst[i]+"="+arrSecond[i])
+	        		div.style.width = "20px";
+	        		div.style.height = "20px";
+	        		div.appendChild(content);
+	        		document.body.appendChild(div);
+				}
+				alert('')
+				alert("do");
+					var x=[], i, j;
+					for (i=0; i<arrSecond.length; i++){
+					  x[i] = new Array();
+					  var num = 1;
+					for (j=0; j<arrSecond.length; j++){
+					  	x[i][j]=0;
+					  	if(i === 1 ){
+					  		x[i][0]=1;
+					  	}
+					  	for(var num = 1; num<arrSecond.length;num++){
+					  		num1= num+1;
+						if(i === num && j === num1){ 
+							x[i][num1]=1;
+							
+						}
+						if(j === num && i === num1 ){
+							x[num1][j]=1;
+						}
+						if(i===j){
+							x[i][j]=0;
+						}
+						}
+					  	
+					  	if(j === 1 ){
+					  		x[0][j]=1;
+					  	}
+						
+					   }
+					   
+					 }
+				
+					 
+					 for(var i = arrSecond.length-1; i>=0; i--){
+						var div2 = document.createElement("div");
+						div2.setAttribute('class','matrix');
+						var content = document.createTextNode(x[i]);
+						div2.appendChild(content);
+		   				document.body.appendChild(div2);	
+					}
+					console.log(x);
+
+			}
+			else if (zam1 != zam2){
+				alert("Данные графы не могут быть изоморфны так как пути замкнутости разные");
+				
+			}
+			else if (v1 != v2 ){
+				alert("данные графы не изоморфны так как количество вершин не одинаково");
+				
+			}
+			else if (e1 != e2){
+				alert("данные графы не изоморфны так как количество ребер не одинаково");
+				
+			}
+			if(v2===v1 && v2 === 4){
+				alert('mmm');
+				for(var i = arrFirst.length-1; i>=0; i--){
+					var div = document.createElement("div");
+					div.setAttribute('class','eq');
+					var content = document.createTextNode(arrFirst[i]+"="+arrSecond[i])
+	        		div.style.width = "20px";
+	        		div.style.height = "20px";
+	        		div.appendChild(content);
+	        		document.body.appendChild(div);
+				}
+					var x=[], i, j;
+					for (i=0; i<arrSecond.length; i++){
+					  x[i] = new Array();
+					  var num = 1;
+					for (j=0; j<arrSecond.length; j++){
+					  	x[i][j]=0;
+					  	if(i === 2 || i===3 ){
+					  		x[i][0]=1;
+					  	}
+					  	if(j === 2 || j===3 ){
+					  		x[0][j]=1;
+					  	}
+					  	
+						
+					   }
+					   
+					 }
+				
+					 
+					 for(var i = arrSecond.length-1; i>=0; i--){
+						var div2 = document.createElement("div");
+						div2.setAttribute('class','matrix');
+						var content = document.createTextNode(x[i]);
+						div2.appendChild(content);
+		   				document.body.appendChild(div2);	
+					}
+					console.log(x);
+
+			}
+			
+			if(zam1 === zam2 && zam1 === v2 && e1 === e2){
+				
+				for(var i = arrFirst.length-1; i>=0; i--){
+					var div = document.createElement("div");
+					div.setAttribute('class','eq');
+					var content = document.createTextNode(arrFirst[i]+"="+arrSecond[i])
+	        		div.style.width = "20px";
+	        		div.style.height = "20px";
+	        		div.appendChild(content);
+	        		document.body.appendChild(div);
+				}
+
+				
+				
+				
+				var x=[], i, j;
+					for (i=0; i<arrFirst.length; i++){
+					  x[i] = new Array();
+					  var num = 1;
+					for (j=0; j<arrFirst.length; j++){
+					  	x[i][j]=0;
+					  	if(i === 1 ||i === arrFirst.length-1 ){
+					  		x[i][0]=1;
+					  	}
+					  	for(var num = 1; num<arrFirst.length;num++){
+					  		num1= num+1;
+						if(i === num && j === num1){ 
+							x[i][num1]=1;
+							
+						}
+						if(j === num && i === num1 ){
+							x[num1][j]=1;
+						}
+						if(i===j){
+							x[i][j]=0;
+						}
+						}
+					  	
+					  	if(j === 1 || j=== arrFirst.length-1 ){
+					  		x[0][j]=1;
+					  	}
+						
+					   }
+					   
+					 }
+					 for(var i = arrFirst.length-1; i>=0; i--){
+						var div2 = document.createElement("div");
+						div2.setAttribute('class','matrix');
+						var content = document.createTextNode(x[i]);
+						div2.appendChild(content);
+		   				document.body.appendChild(div2);	
+					}
+					console.log(x);}
+				
+	}
+
+</script>
+</body>
+</html>
